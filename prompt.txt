@@ -1,0 +1,12 @@
+Build a full-stack Next.js app as an online products store , using Tailwind and React-Three-Fiber. The theme is '2070s Minimalist Cyberpunk'. Use a dark mode 2.0 theme (deep obsidian, neon electric blue accents). Integrate interactive 3D elements in the hero section that react to mouse hover. Implement a data visualization dashboard layout. Use TypeScript for all code. Make it look like a quantum-secure fintech portal.
+Key Design Elements are:
+Dark Mode 2.0: Deep, moody backgrounds with high-contrast neon accents.
+3D & AR: Use Three.js for interactive, 3D objects.
+Minimalist Interface: Clean, spacious, and modern layout.
+Glassmorphism: Frosted glass, transparent layers.
+use :
+Frontend Framework: Next.js 15+ (for SSR/SSG), React 19, and TypeScript for safety.
+Styling & 3D: Tailwind CSS (for layout), Three.js/React-Three-Fiber (for 3D objects), and Framer Motion (for 60fps animations).
+Backend & Data: FastAPI (Python) with GraphQL (for efficient, 2070-level data fetching).
+Database: PostgreSQL.
+Deployment: Vercel 

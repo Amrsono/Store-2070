@@ -1,0 +1,30 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.next/
+dist/
+out/
+build/
+coverage/
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.so
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+backend/sql_app.db
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

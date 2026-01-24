@@ -28,3 +28,8 @@ app.include_router(graphql_app, prefix="/graphql")
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Store 2070 Quantum API"}
+
+@app.post("/seed")
+def seed_data():
+    seed_db()
+    return {"message": "Database seeded successfully"}

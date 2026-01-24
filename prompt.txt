@@ -10,3 +10,13 @@ Styling & 3D: Tailwind CSS (for layout), Three.js/React-Three-Fiber (for 3D obje
 Backend & Data: FastAPI (Python) with GraphQL (for efficient, 2070-level data fetching).
 Database: PostgreSQL.
 Deployment: Vercel 
+
+Admin Credentials:
+
+Username: admin
+Password: admin_hash_2070 (Note: Since this is a demo environment, this string is currently stored directly in the hashed_password field).
+Customer Accounts (for testing):
+
+kyle_reese
+sarah_connor
+doc_brown (All configured with password: password)

@@ -1,0 +1,18 @@
+{
+    "builds": [
+        {
+            "src": "frontend/package.json",
+            "use": "@vercel/next"
+        },
+        {
+            "src": "api/index.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "rewrites": [
+        {
+            "source": "/graphql",
+            "destination": "/api/index.py"
+        }
+    ]
+}

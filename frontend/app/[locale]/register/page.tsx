@@ -43,7 +43,22 @@ export default function RegisterPage() {
                 body: JSON.stringify({ query })
             });
 
-            const result = await response.json();
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText.slice(0, 50)}`);
+            }
+
+            const responseText = await response.text();
+            if (!responseText) {
+                throw new Error("Empty response from server");
+            }
+
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (e) {
+                throw new Error(`Invalid JSON: ${responseText.slice(0, 50)}`);
+            }
 
             // Check for GraphQL errors
             if (result.errors) {

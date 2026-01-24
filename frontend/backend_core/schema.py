@@ -3,6 +3,7 @@ from typing import List, Optional
 import models
 from database import SessionLocal
 from sqlalchemy import func
+from email_utils import generate_verification_token, send_verification_email, send_welcome_email
 
 @strawberry.type
 class Product:
@@ -137,6 +138,7 @@ class AuthPayload:
     user_id: Optional[int]
     username: Optional[str]
     is_admin: Optional[int]
+    email_verified: Optional[bool]
     message: Optional[str]
 
 @strawberry.type
@@ -148,11 +150,11 @@ class Mutation:
         db.close()
 
         if not user:
-             return AuthPayload(success=False, message="User not found", token=None, user_id=None, username=None, is_admin=None)
+             return AuthPayload(success=False, message="User not found", token=None, user_id=None, username=None, is_admin=None, email_verified=False)
         
         # Simple password check (in prod use bcrypt.verify)
         if user.hashed_password != password:
-            return AuthPayload(success=False, message="Invalid credentials", token=None, user_id=None, username=None, is_admin=None)
+            return AuthPayload(success=False, message="Invalid credentials", token=None, user_id=None, username=None, is_admin=None, email_verified=False)
 
         return AuthPayload(
             success=True,
@@ -160,7 +162,8 @@ class Mutation:
             token="fake-jwt-token-2070", # Mock token
             user_id=user.id,
             username=user.username,
-            is_admin=user.is_admin
+            is_admin=user.is_admin,
+            email_verified=bool(user.email_verified)
         )
 
     @strawberry.mutation
@@ -170,25 +173,60 @@ class Mutation:
         
         if existing_user:
             db.close()
-            return AuthPayload(success=False, message="Identity already exists in grid", token=None, user_id=None, username=None, is_admin=None)
+            return AuthPayload(success=False, message="Identity already exists in grid", token=None, user_id=None, username=None, is_admin=None, email_verified=False)
             
+        token = generate_verification_token()
+        
         new_user = models.User(
             username=username,
             hashed_password=password, # In prod use bcrypt
-            is_admin=0 
+            is_admin=0,
+            email_verified=0,
+            verification_token=token
         )
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
         db.close()
         
+        # Simulate sending verification email
+        send_verification_email(username, token)
+        
         return AuthPayload(
             success=True,
-            message="Identity forged successfully",
+            message="Identity forged. Check your neural inbox for verification.",
             token="fake-jwt-token-new-user",
             user_id=new_user.id,
             username=new_user.username,
-            is_admin=0
+            is_admin=0,
+            email_verified=False
+        )
+
+    @strawberry.mutation
+    def verify_email(self, token: str) -> AuthPayload:
+        db = SessionLocal()
+        user = db.query(models.User).filter(models.User.verification_token == token).first()
+        
+        if not user:
+            db.close()
+            return AuthPayload(success=False, message="Invalid verification token", token=None, user_id=None, username=None, is_admin=None, email_verified=False)
+            
+        user.email_verified = 1
+        user.verification_token = None
+        db.commit()
+        db.refresh(user)
+        db.close()
+        
+        send_welcome_email(user.username)
+        
+        return AuthPayload(
+            success=True,
+            message="Email verified successfully. Access granted.",
+            token="fake-jwt-token-verified",
+            user_id=user.id,
+            username=user.username,
+            is_admin=user.is_admin,
+            email_verified=True
         )
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)

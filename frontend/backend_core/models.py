@@ -29,6 +29,8 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_admin = Column(Integer, default=0) # 1 for admin
+    email_verified = Column(Integer, default=0) # 0 for false, 1 for true
+    verification_token = Column(String, nullable=True)
 
 class Order(Base):
     __tablename__ = "orders"

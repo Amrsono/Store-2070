@@ -14,5 +14,15 @@
             "source": "/graphql",
             "destination": "/api/index.py"
         }
+    ],
+    "routes": [
+        {
+            "src": "/graphql",
+            "dest": "/api/index.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/frontend/$1"
+        }
     ]
 }

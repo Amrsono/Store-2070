@@ -79,7 +79,7 @@ export default function LoginPage() {
                     </div>
 
                     <h1 className="text-2xl font-black text-center text-white uppercase tracking-widest mb-2">Login</h1>
-                    <p className="text-center text-white/40 font-mono text-xs uppercase mb-8">Enter Credentials to Access Neural Grid</p>
+
 
                     <form onSubmit={handleLogin} className="space-y-6">
                         <div className="space-y-2">

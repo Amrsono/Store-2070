@@ -6,10 +6,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/graphql',
+        source: '/api/graphql',
         destination: process.env.NODE_ENV === 'development'
           ? 'http://127.0.0.1:8000/graphql'
-          : '/api/index.py',
+          : '/api/graphql',
       },
     ]
   },

@@ -29,7 +29,7 @@ export default function LoginPage() {
                 }
             `;
 
-            const response = await fetch('http://localhost:8000/graphql', {
+            const response = await fetch('/graphql', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query })
@@ -78,7 +78,7 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    <h1 className="text-2xl font-black text-center text-white uppercase tracking-widest mb-2">Identify</h1>
+                    <h1 className="text-2xl font-black text-center text-white uppercase tracking-widest mb-2">Login</h1>
                     <p className="text-center text-white/40 font-mono text-xs uppercase mb-8">Enter Credentials to Access Neural Grid</p>
 
                     <form onSubmit={handleLogin} className="space-y-6">
@@ -126,13 +126,16 @@ export default function LoginPage() {
                                 <span className="animate-pulse">Authenticating...</span>
                             ) : (
                                 <>
-                                    Access System <ArrowRight className="w-4 h-4" />
+                                    Log In <ArrowRight className="w-4 h-4" />
                                 </>
                             )}
                         </button>
                     </form>
 
-                    <div className="mt-8 text-center">
+                    <div className="mt-8 flex flex-col items-center gap-4 text-center">
+                        <a href="/register" className="text-xs font-mono text-neon-blue hover:text-white transition-colors uppercase tracking-wider">
+                            Don't have an account? Register
+                        </a>
                         <a href="#" className="text-[10px] font-mono text-white/30 hover:text-neon-blue transition-colors uppercase">Forgot Credentials?</a>
                     </div>
                 </div>

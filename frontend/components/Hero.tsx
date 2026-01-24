@@ -80,7 +80,7 @@ export const Hero = () => {
         loading: isArabic ? 'جار التحميل' : 'Now Loading',
         desc: isArabic ? 'أحذية مضادة للجاذبية. سترات ذكية. أقمشة متكيفة. ارتقِ بأسلوبك إلى عام 2070.' : 'Anti-grav footwear. Smart jackets. Adaptive fabrics. Upgrade your aesthetic to the year 2070.',
         login: isArabic ? 'تسجيل الدخول' : 'Login',
-        register: isArabic ? 'إنشاء هوية' : 'Register Identity',
+        register: isArabic ? 'سجل الآن' : 'Register now!',
         status: isArabic ? 'حالة النظام: مثالية' : 'SYSTEM STATUS: OPTIMAL',
         loc: isArabic ? 'الموقع: نيو-طوكيو عقدة 7' : 'LOCATION: NEO-TOKYO NODE 7'
     };

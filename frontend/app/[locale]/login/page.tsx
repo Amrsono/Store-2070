@@ -50,9 +50,9 @@ export default function LoginPage() {
             } else {
                 setError(data.message || 'Access Denied');
             }
-        } catch (err) {
-            console.error(err);
-            setError('System Error: Connection to Core failed.');
+        } catch (err: any) {
+            console.error('Login Error:', err);
+            setError(`System Error: ${err.message || 'Connection to Core failed.'}`);
         } finally {
             setLoading(false);
         }

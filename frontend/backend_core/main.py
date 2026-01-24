@@ -11,7 +11,7 @@ seed_db()
 
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Store 2070 API")
+app = FastAPI(title="Store 2070 API", docs_url="/api/docs", redoc_url=None, openapi_url="/api/openapi.json")
 
 app.add_middleware(
     CORSMiddleware,

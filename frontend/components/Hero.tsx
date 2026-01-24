@@ -60,6 +60,7 @@ const ParticleField = ({ count = 500 }) => {
                     count={points.length / 3}
                     array={points}
                     itemSize={3}
+                    args={[points, 3]}
                 />
             </bufferGeometry>
             <pointsMaterial size={0.02} color="#00f2ff" transparent opacity={0.4} />

@@ -30,9 +30,9 @@ app.include_router(graphql_app, prefix="") # Handle root request (likely what Ve
 
 app.include_router(graphql_app, prefix="/api/graphql") # Fallback for some hosting setups
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to Store 2070 Quantum API"}
+# @app.get("/")
+# def read_root():
+#     return {"message": "Welcome to Store 2070 Quantum API"}
 
 @app.post("/seed")
 def seed_data():

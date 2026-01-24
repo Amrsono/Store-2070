@@ -103,14 +103,14 @@ export default function RegisterPage() {
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
                                     className="w-full bg-obsidian-light border border-white/10 rounded-lg py-3 pl-10 pr-4 text-sm text-white focus:border-neon-purple/50 focus:shadow-[0_0_10px_rgba(188,19,254,0.1)] outline-none transition-all font-mono"
-                                    placeholder="DESIRED_ALIAS"
+                                    placeholder="DESIRED_USERNAME"
                                     required
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-mono text-white/50 uppercase tracking-widest">Passcode</label>
+                            <label className="text-[10px] font-mono text-white/50 uppercase tracking-widest">Password</label>
                             <div className="relative">
                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
                                 <input
@@ -125,7 +125,7 @@ export default function RegisterPage() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-[10px] font-mono text-white/50 uppercase tracking-widest">Confirm Passcode</label>
+                            <label className="text-[10px] font-mono text-white/50 uppercase tracking-widest">Confirm Password</label>
                             <div className="relative">
                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
                                 <input
@@ -133,7 +133,7 @@ export default function RegisterPage() {
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     className="w-full bg-obsidian-light border border-white/10 rounded-lg py-3 pl-10 pr-4 text-sm text-white focus:border-neon-purple/50 focus:shadow-[0_0_10px_rgba(188,19,254,0.1)] outline-none transition-all font-mono"
-                                    placeholder="CONFIRM_STRENGTH"
+                                    placeholder="CONFIRM_PASSWORD"
                                     required
                                 />
                             </div>

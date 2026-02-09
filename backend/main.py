@@ -24,6 +24,8 @@ app.add_middleware(
 graphql_app = GraphQLRouter(schema)
 
 app.include_router(graphql_app, prefix="/graphql")
+app.include_router(graphql_app, prefix="/api/graphql")
+app.include_router(graphql_app, prefix="") # Handle root request (likely what Vercel sends)
 
 @app.get("/")
 def read_root():
